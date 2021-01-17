@@ -24,11 +24,11 @@ public class User {
             if(terrainSensor.getData()!='v' || terrainSensor.getData()!='<'||terrainSensor.getData()!='>'||terrainSensor.getData()!='^'){
                 commands.add(r -> r.go(0.2));//First step
             }
-            //Loop for the line (my robot only managed to run half of the way)
+            //Loop for the line
             while(firstPosition.x != currentX && firstPosition.y != currentY || z != 0){
                 if (currentDirection == 0){
                     if(terrainSensor.getData() == '>'){
-                        commands.add(r -> r.go(0.2));
+                        commands.add(r -> r.go(0.1));
                         currentX +=1;
                     } else if(terrainSensor.getData() =='v'){
                         commands.add(r -> r.turnTo(Math.PI/2));
@@ -42,7 +42,7 @@ public class User {
                     }
                 } else if (currentDirection == Math.PI/2){
                     if(terrainSensor.getData() =='v'){
-                        commands.add(r -> r.go(0.2));
+                        commands.add(r -> r.go(0.1));
                         currentY +=1;
                     } else if(terrainSensor.getData() == '>'){
                         commands.add(r -> r.turnTo(0));
@@ -56,7 +56,7 @@ public class User {
                     }
                 } else if (currentDirection == Math.PI){
                     if(terrainSensor.getData() =='<'){
-                        commands.add(r -> r.go(0.2));
+                        commands.add(r -> r.go(0.1));
                         currentX -=1;
                     } else if(terrainSensor.getData() == '>'){
                         commands.add(r -> r.turnTo(0));
@@ -70,7 +70,7 @@ public class User {
                     }
                 } else if (currentDirection == (3*Math.PI/2)){
                     if(terrainSensor.getData() =='^'){
-                        commands.add(r -> r.go(0.2));
+                        commands.add(r -> r.go(0.1));
                         currentY -=1;
                     } else if(terrainSensor.getData() == '>'){
                         commands.add(r -> r.turnTo(0));
@@ -110,28 +110,28 @@ public class User {
                 } else {
                     if (direction == 0) {
                         if (mazeRunner.getWorld().getTerrain(current.x , current.y+1) == '#') {
-                            commands.add(r -> r.go(0.2));
+                            commands.add(r -> r.go(0.1));
                         } else {
                             commands.add(r -> r.turnBy(Math.PI / 2));
                             direction = Math.PI / 2;
                         }
                     } else if (direction == Math.PI / 2) {
                         if (mazeRunner.getWorld().getTerrain(current.x-1, current.y ) == '#') {
-                            commands.add(r -> r.go(0.2));
+                            commands.add(r -> r.go(0.1));
                         } else {
                             commands.add(r -> r.turnBy(Math.PI / 2));
                             direction = Math.PI;
                         }
                     } else if (direction == Math.PI) {
                         if (mazeRunner.getWorld().getTerrain(current.x , current.y-1) == '#') {
-                            commands.add(r -> r.go(0.2));
+                            commands.add(r -> r.go(0.1));
                         } else {
                             commands.add(r -> r.turnBy(Math.PI / 2));
                             direction = 3 * Math.PI / 2;
                         }
                     } else if(direction == 3 * Math.PI / 2){
                         if (mazeRunner.getWorld().getTerrain(current.x+1 , current.y) == '#') {
-                            commands.add(r -> r.go(0.2));
+                            commands.add(r -> r.go(0.1));
                         } else {
                             commands.add(r -> r.turnBy(Math.PI / 2));
                             direction = 0;
@@ -193,18 +193,17 @@ public class User {
 
 
 
-        String map = ("""
-                ################
-                #v<#           #
-                #v^#   #v<< #  #
-                #v^<<<<<<0^ #  #
-                #v   # >>>^#   #
-                #v###  ^#     ##
-                #>>>>>>^       #
-                ################""");
-        World world = new World(map);
-        makeLineFollower().spawnInWorld(world, '0');
-        world.run();
+//        String map = ("""
+//                ##############
+//                #  0   #   ##  $
+//                #  #  ##   #   #
+//                ####   # ### ###
+//                #      #       #
+//                #  #      ##   #
+//                ################""");
+//        World world = new World(map);
+//        makeMazeRunner().spawnInWorld(world, '0');
+//        world.run();
     }
 
 }
