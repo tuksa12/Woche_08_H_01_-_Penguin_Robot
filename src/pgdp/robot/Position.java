@@ -2,7 +2,18 @@ package pgdp.robot;
 
 import java.util.Locale;
 
-public class Position {
+public class
+
+
+
+
+
+
+
+
+
+
+Position {
     public double x, y;
 
     public Position(double x, double y) {
