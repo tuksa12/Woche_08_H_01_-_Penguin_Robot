@@ -14,7 +14,7 @@ public class Memory<T>{
     }
 
     public void set(T data){
-    this.data = data;
+        this.data = data;
     }
 
     public String toString(){
